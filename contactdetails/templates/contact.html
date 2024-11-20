@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTACT-BOOK</title>
+</head>
+<body>
+    <form action="contacting" method="post">
+        {% csrf_token %}
+    <input type="text" name="name">
+    <input type="email" name="mail">
+    <button type="submit">Submit</button>
+</form>
+{{result}}
+</body>
+</html>

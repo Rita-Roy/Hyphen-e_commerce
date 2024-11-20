@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie</title>
+</head>
+<body>
+    <h1><b><u>EXPLORE HERE</u></b></h1>
+    <nav class="navbar">
+        <ul>
+            <li><a href="">About us</a> </li>
+            <li><a href="{% url 'movie_list' %}">Movies</a> </li>
+            <li><a href="{% url 'upcoming' %}">Upcoming Movies</a> </li>
+            <li><a href="">Account</a> </li>
+            <li><a href="">Help/Support</a> </li>
+        </ul>
+    </nav>
+    <div class="available-movies">
+        {% for movie in movies %}
+        <div class="movie-box">
+            <img src="{{movie.images.url}}" alt="Movie Image"> 
+            <h3>{{ movie.title }}</h3>
+            <h4>{{ movie.genre }}</h4>
+            <h4>{{ movie.duration }}</h4>
+            <p>Release Date: {{movie.release_date }}</p>
+            <p>Rating: {{ movie.rating }}</p>
+            <form action="{% url 'select_showtime' movie.id %}" method="get">
+                <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">BOOK</button>
+            </form>
+
+        </div>
+        {% endfor %}
+    </div>
+    <style>
+        .navbar ul{
+            list-style-type: none;
+            background-color: hsl(0,0%,25%);
+            padding:0px;
+            margin:0px;
+            overflow: hidden;
+        }
+        .navbar a{
+            color: white;
+            text-decoration: none; 
+            padding: 15px;
+            display:block;
+            text-align: center;
+        }
+        .navbar a:hover{
+            background-color: hsl(0,0%,10%);
+
+        }
+        .navbar li{
+            float: left;
+        }
+        h1{
+            color: white;
+            text-align: center;
+            font-size: 2.5em;
+            margin-top: none;
+
+        }
+        .available-movies{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .movie-box{
+            width: 250px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+
+        }
+        .movie-box img{
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-bottom: 2px solid #ddd;
+        }
+        .movie-box h3{
+            font-size: 1.3em;
+            margin: 10px;
+            color:#333
+        }
+        .movie-box h4 {
+            font-size: 1em;
+            margin: 5px 10px;
+            color: #666;
+        }
+
+        .movie-box p {
+            font-size: 0.9em;
+            margin: 5px 10px;
+            color: #444;
+        }
+
+        /* Hover effect for movie boxes */
+        .movie-box:hover {
+            transform: scale(1.05);
+        }  
+        body{
+            background-image:url('https://wallpapercat.com/w/full/9/5/a/945731-3840x2160-desktop-4k-matte-black-wallpaper-image.jpg'); /* Replace with the path to your image */
+            background-size: cover;      /* Ensures the image covers the entire screen */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            background-position: center; /* Centers the image on the screen */
+        } 
+    </style>
+
+</body>
+</html>

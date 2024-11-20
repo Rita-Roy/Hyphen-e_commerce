@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="view/appointment/">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Stylist</th>
+                <th>Hairstyle</th>
+                <th>Date</th>
+                <th>Notes</th>
+               
+            </tr>
+            {% for i in hairstyles %}
+            <tr>
+                <td>{{i.customer}}</td>
+                <td>{{i.stylist}}</td>
+                <td>{{i.hairstyle}}</td>
+                <td>{{i.appointment_date}}</td>
+                <td>{{i.notes}}</td>
+             
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    
+    
+</body>
+</html>

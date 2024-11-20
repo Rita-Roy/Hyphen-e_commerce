@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showtime</title>
+    <link rel="stylesheet" href="{% static 'mystyle.css' %}">
+</head>
+<body>
+    <h1>FILM AIRING</h1>
+    <h2>Select Showtime for {{ movie.title }}</h2>
+    <nav class="navbar">
+        <ul>
+            <li><a href="">About us</a> </li>
+            <li><a href="{% url 'movie_list' %}">Movies</a> </li>
+            <li><a href="{% url 'upcoming' %}">Upcoming Movies</a> </li>
+            <li><a href="">Account</a> </li>
+            <li><a href="">Help/Support</a> </li>
+        </ul>
+    </nav>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="showtime-container">
+            {% for showtime in showtimes %}
+            <div class="showtime-box">
+                <p><strong>Show Date:</strong> {{ showtime.show_date }}</p>
+                <p><strong>Show Time:</strong> {{ showtime.show_time }}</p>
+                <button type="submit" name="showtime" value="{{ showtime.id }}" class="btn">Select Showtime</button>
+            </div>
+            {% endfor %}
+        </div>
+    </form>
+    <style>
+        /* General container for the showtimes */
+        .showtime-container {
+            display: flex;
+            flex-wrap: wrap; /* Allows the items to wrap into multiple rows if necessary */
+            gap: 10px; /* Smaller space between boxes */
+            justify-content: center; /* Center the boxes horizontally */
+            padding: 20px;
+        }
+
+        /* Styling for each showtime box */
+        .showtime-box {
+            width: 120px;  /* Smaller width for tiny boxes */
+            padding: 10px; /* Less padding to keep it compact */
+            background-color: #f8f9fa;  /* Light background color */
+            border: 1px solid #ccc; /* Light border around the box */
+            border-radius: 5px;  /* Slight rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            text-align: center;  /* Center the content */
+            transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition on hover */
+            font-size: 12px;  /* Smaller text size for compact boxes */
+        }
+
+        /* Hover effect for showtime box */
+        .showtime-box:hover {
+            transform: scale(1.05);  /* Slightly enlarge the box on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Darker shadow on hover */
+        }
+
+        /* Styling for the button */
+        .btn {
+            background-color: #007bff;  /* Blue background */
+            color: white;  /* White text */
+            border: none;  /* Remove border */
+            padding: 5px 10px;  /* Smaller padding for the button */
+            border-radius: 3px;  /* Rounded corners */
+            cursor: pointer;  /* Pointer cursor on hover */
+            font-size: 12px;  /* Smaller text on the button */
+            transition: background-color 0.3s;  /* Smooth background color change */
+            margin-top: 5px;  /* Small space between button and showtime details */
+        }
+
+        /* Hover effect for button */
+        .btn:hover {
+            background-color: #0056b3;  /* Darker blue when hovered */
+        }
+        h1{
+            color: white;
+            text-align: center;
+            font-size: 2.5em;
+            margin-top: none;
+
+        }
+        .navbar ul{
+            list-style-type: none;
+            background-color: hsl(0,0%,25%);
+            padding:0px;
+            margin:0px;
+            overflow: hidden;
+        }
+        .navbar a{
+            color: white;
+            text-decoration: none; 
+            padding: 15px;
+            display:block;
+            text-align: center;
+        }
+        .navbar a:hover{
+            background-color: hsl(0,0%,10%);
+
+        }
+        .navbar li{
+            float: left;
+        }
+        body{
+            background-image:url('https://wallpapercat.com/w/full/9/5/a/945731-3840x2160-desktop-4k-matte-black-wallpaper-image.jpg'); /* Replace with the path to your image */
+            background-size: cover;      /* Ensures the image covers the entire screen */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            background-position: center; /* Centers the image on the screen */
+        }
+
+    </style>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie.title }} Showtimes</title>
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+</head>
+<body>
+    <h1>Showtimes for {{ movie.title }}</h1>
+
+    <!-- Display Success or Error Messages -->
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- List of Available Showtimes -->
+    <h2>Available Showtimes</h2>
+    <ul>
+        {% for showtime in showtimes %}
+            <li>{{ showtime.date }} at {{ showtime.time }}</li>
+        {% empty %}
+            <li>No showtimes available for this movie.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Form to Add a New Showtime -->
+    <h2>Add a New Showtime</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Showtime</button>
+    </form>
+</body>
+</html>

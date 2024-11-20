@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="{% url 'addemp' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    
+       Name: 	<input type="text" name="name"><br>
+       Address:	<input type="text" name="address" ><br>
+       Age:<input type="text" name="age"><br>
+       Image:<input type="file" name="Image" accept="image/*">
+       
+    <input type="submit" value="Add Employee"><br>
+    
+    <p>
+          {{msg}} <br>
+          
+    </p>
+
+    </form>
+
+
+    <form action="read">
+        <input type="submit" value="Display"><br>
+    <table border="1">
+       
+        <tr>
+            <th>Empid</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Age</th>
+            <th>Image</th>
+        </tr>
+
+        {% for i in emp %}     <!--Jinja format-->
+
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.address}}</td>
+            <td>{{i.age}}</td>
+            <td><img src="{{i.image.url}}" height="75" width="75"></img></td>
+        </tr>
+        {% endfor %}
+    </table><br>
+    </form>
+    
+    
+    <form action="delete" method="Post">
+        {% csrf_token %}
+        Name to delete: <input type="text" name="name">
+        <br>
+        <input type="submit" value="Delete">
+        <br>
+        {{msg}}
+    </form>
+
+
+    <form action="update" method="Post">
+        {% csrf_token %}
+        Old name: <input type="text" name="oldname"
+        <br>
+        New name: <input type="text" name="newname"
+        <br>
+        <input type="submit" value="Update Employee">
+        <br> 
+
+    </form>
+</body>
+</html>
+
+

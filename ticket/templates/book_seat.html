@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Seat - {{ seat.seat_number }}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    
+</head>
+<body>
+    <h1>Book Your Seat</h1>
+    <h2>Seat: {{ seat.seat_number }}</h2>
+    <h3>Showtime: {{ showtime.date }} at {{ showtime.time }}</h3>
+
+    <!-- Display success or error messages -->
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Booking Form -->
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        </div>
+        <button type="submit">Confirm Booking</button>
+    </form>
+
+    <a href="{% url 'seat_selection' showtime.id %}">Back to Seat Selection</a>  <!-- Link to navigate back to the seat selection -->
+</body>
+</html>

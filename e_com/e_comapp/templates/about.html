@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Inside HYPHEN</h1>
+            <p class="lead fw-normal text-white-50 mb-0">WHY HYPHEN IT?</p>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="image-container">
+                <img src="{% static 'images\WhatsApp Image 2024-11-13 at 17.38.55_66de0656.jpg' %}" class="content-image" alt="Inside Hyphen">
+            </div>
+            <!-- Question Section -->
+            <p class="question-text">The question is: <span class="highlight-text">Why can't you HAVE IT ALL?</span></p>
+            
+            <!-- About Text Section -->
+            <p class="about-text">We believe in curating result-driven skincare solutions, by blending the best & multiple, natural and active ingredients in ONE bottle. We are dedicated to Clean, 100% Vegan, Peta Certified products & achieved Zero Plastic Footprint for all our products.</p>   
+            <br>
+            <p class="about-text">Welcome to Letshyphen Skincare, where beauty meets nature in the most harmonious way. We believe that healthy, radiant skin begins with nourishing, high-quality ingredients that promote both beauty and well-being. Our mission is simple: to provide you with skincare products that enhance your natural beauty, while staying true to our commitment to sustainability and environmental responsibility.</p>
+            <br>
+
+            <!-- Image Section -->
+            <div class="image-container">
+                <img src="{% static 'images/Main-Banner-Desktop-1_80935a47-07c2-406d-a4cd-9c62fcc864c2.webp' %}" class="content-image" alt="Inside Hyphen">
+                <br>
+                <img src="{% static 'images\AOUT1.jpg' %}" class="content-image" alt="Inside Hyphen">
+            
+            </div>
+            <div class="image-container">
+                <img src="{% static 'images\kriti.jpg' %}" class="content-image" alt="Inside Hyphen">
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Header Styling */
+    .display-4 {
+        font-size: 3rem;
+        font-weight: bold;
+    }
+    
+    /* Question Text Styling */
+    .question-text {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #333;
+        text-align: center;
+        margin-top: 30px;
+        line-height: 1.5;
+    }
+    
+    .highlight-text {
+        color: #007bff;
+        font-weight: bold;
+    }
+
+    /* About Text Styling */
+    .about-text {
+        font-size: 1.125rem;
+        font-weight: 400;
+        line-height: 1.8;
+        color: #555;
+        text-align: justify;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* Image Styling */
+    .content-image {
+        width: 100%; /* Ensure the image takes up full container width */
+        max-width: 800px; /* Max width of the image to avoid stretching */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+        display: block; /* Remove bottom spacing */
+        margin: 30px auto; /* Center image with margin around it */
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth hover effect */
+    }
+
+    /* Hover Effect on Image */
+    .content-image:hover {
+        transform: scale(1.05); /* Slight zoom effect */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+    }
+
+    /* Remove Padding from Container */
+    .container,
+    .row {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    /* Ensure Image is Properly Centered */
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Spacing between paragraphs */
+    p {
+        margin-bottom: 15px;
+    }
+
+</style>
+
+{% endblock %}

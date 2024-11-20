@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seat Selection</title>
+    
+</head>
+<body>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+    <h2>Select Seat for {{ showtime.movie.title }} on {{ showtime.show_date }} at {{ showtime.show_time }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="seating-grid">
+            {% for seat in seats %}
+                <div class="seat">
+                    <input type="radio" name="seat" value="{{ seat.id }}" id="seat-{{ seat.id }}" class="seat-input" />
+                    <label for="seat-{{ seat.id }}">
+                        <img src="{% static 'images\chairee.jpg' %}" alt="Seat" />
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+
+        <button type="submit">Confirm Ticket</button>
+    </form>
+    <style>
+        body{
+            background-image:url('https://wallpapercat.com/w/full/9/5/a/945731-3840x2160-desktop-4k-matte-black-wallpaper-image.jpg'); /* Replace with the path to your image */
+            background-size: cover;      /* Ensures the image covers the entire screen */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            background-position: center; /* Centers the image on the screen */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            color: white;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: white;
+        }
+
+        .seating-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 50px); /* 10 seats per row, adjust as needed */
+            grid-gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+
+        .seat {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .seat-input {
+            display: none; /* Hide the radio button */
+        }
+
+        .seat label {
+            display: block;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .seat label:hover {
+            transform: scale(1.1); /* Hover effect for seat */
+        }
+
+        .seat input:checked + label {
+            border: 2px solid #4CAF50; /* Green border for selected seat */
+            background-color: #e8f5e9;
+        }
+
+        .seat img {
+            width: 30px; /* Size of the chair icon */
+            height: auto;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+    </style>
+</body>
+</html>

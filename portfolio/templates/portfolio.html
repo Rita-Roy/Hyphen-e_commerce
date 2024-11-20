@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+</head>
+<body>
+    <form action="portfolio_mine" method="post">
+        {% csrf_token %}
+    <div>
+    Name: <input type="text" name="name">
+    <br>
+    Contact Details: <input type="tele" name="contact_info">
+    <br>
+    Email: <input type="email" name="mail_id">
+    <br>
+    Skills: <input type="text" name="skills">
+    <br>
+    Projects: <input type="text" name="projects">
+    <br>
+    Work Experience: <input type="text" name="experience">
+    <br>
+    <button type="submit">OK</button>
+    </div>
+</form>
+</body>
+</html>

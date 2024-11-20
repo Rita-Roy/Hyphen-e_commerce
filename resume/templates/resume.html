@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Resume Website</title>
+</head>
+<body>
+    <form action="detailing" method="post">
+        {% csrf_token %}
+       Name: <input type="text" name="name">
+       <br>
+       Work Experience: <input type="text" name="experience">
+       <br>
+       Education: <select name="education">
+        <option>Select--</option>
+        <option>Post Graduate</option>
+        <option>Btech</option>
+        <option>BCA/MCA</option>
+        <option>Bsc/Bcom</option>
+        <option>11/12</option>
+        <br>
+        
+       </select>
+
+        Skills: <input type="text" name="skills">
+        contact: <input type="tel" name="contact_info">
+
+        <button type="submit">OK</button>
+
+    </form>
+
+    
+</body>
+</html>

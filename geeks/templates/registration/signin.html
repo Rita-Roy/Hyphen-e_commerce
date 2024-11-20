@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <h3>Sign In</h3>
+
+    <form action="{% url 'signin' %}" method="post" >
+    {% csrf_token %}
+        Username: <input type="text" id="username" name="username"placeholder="Enter  username"Required><br>
+        Password: <input type="password" id="pass1" name="pass1"placeholder="Enter password"Required><br>
+        <br>
+        <button type="submit">Sign in</button>
+    </form>
+</body>
+</html>

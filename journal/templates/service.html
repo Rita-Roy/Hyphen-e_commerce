@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{margin: 0px;}
+        main{margin: left 20px;
+            margin-right: 20px;}
+        h1{
+            text-align: center;
+        }
+        .navbar ul{list-style-type: none;
+        background-color: black;
+        padding: 0px;
+        margin: 0px;
+    overflow: hidden;}
+        .navbar a{
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            display: block;
+            text-align: center;
+        }
+        .navbar a:hover{ 
+            background-color: rgb(67, 65, 65);}
+        .navbar li{float:left}
+    </style>
+</head>
+<body>
+    <h1>HAIR SALON</h1>
+    <nav class="navbar">
+
+        <ul>
+
+    <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'viewhairstylist' %}">Hairstylist</a></li>
+            <li><a href="{% url 'createappointment' %}">Appointment</a></li>
+            
+        </ul>
+    </nav>
+    
+    
+    <form method="post" action="view/service/" enctype="multipart/form-data">
+        {% csrf_token %}
+       
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Duration</th>
+                <th>Hairstyle</th>
+                <th>Stylist</th>
+                <th>image</th>
+                
+            </tr>
+            {% for i in hairstyles %}
+            <tr>
+                <td>{{i.name}}</td>
+                <td>{{i.description}}</td>
+                <td>{{i.price}}</td>
+                <td>{{i.duration_minutes}}</td>
+                <td>{{i.hairstyle_type}}</td>
+                <td>{{i.created_by}}</td>
+                <td><img src="{{i.images.url}}" height="75" width="75"></img></td>
+                
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    
+</body>
+</html>

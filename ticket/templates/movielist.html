@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie List</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    
+    
+</head>
+<body>
+    <h1>Movie List</h1>
+
+    <!-- Movie creation form -->
+    <h2>Add a New Movie</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Renders the form fields -->
+        <button type="submit">Add Movie</button>
+    </form>
+
+    <!-- Display success or error messages -->
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Movie list -->
+    <h2>Available Movies</h2>
+    <ul>
+        {% for movie in movies %}
+            <li>
+                <strong>{{ movie.title }}</strong> - 
+                Genre: {{ movie.genre }} | 
+                Duration: {{ movie.duration }} min | 
+                Release Date: {{ movie.release_date }} | 
+                Rating: {{ movie.ratings|default:"N/A" }}
+            </li>
+        {% empty %}
+            <li>No movies available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

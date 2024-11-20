@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+    <h1>Welcome to Movie Booking System</h1>
+
+    <!-- Display success or error messages -->
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <!-- Movie Addition Form -->
+    <div>
+        <h2>Add New Movie</h2>
+        <form method="post" action="{% url 'movie_list' %}">  <!-- Adjust action as needed -->
+            {% csrf_token %}
+            {{ homeform.as_p }}  <!-- Renders the MovieForm fields -->
+            <button type="submit">Add Movie</button>
+        </form>
+    </div>
+    {% else %}
+        <p>Please log in to add new movies.</p>
+    {% endif %}
+
+</body>
+</html>

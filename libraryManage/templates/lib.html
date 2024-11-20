@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management</title>
+</head>
+<body>
+    <form method="POST" action="add">
+        {% csrf_token %}
+
+    <table>
+        {{form.as_table}}
+    </table>
+    <input type="submit" value="Add Book">
+
+    </form>
+    <p>{{msg}}</p>
+
+
+    <form action="display">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>ISBN</th>
+                <th>Genre</th>
+
+            </tr>
+
+            {% for i in lib %}
+
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.author}}</td>
+                <td>{{i.title}}</td>
+                <td>{{i.isbn}}</td>
+                <td>{{i.genre}}</td>
+            </tr>
+            {% endfor %}
+        </table><br>
+        <input type="submit" value="Display"><br>
+    </form>
+
+    <form action="delete" method="Post">
+        {% csrf_token %}
+       Book to delete:  <input type="text" name="author">
+        <br>
+        <input type="submit" value="Delete">
+        <p>{{msg}}</p>
+    </form>
+
+    <form action="update" method="Post">
+        {% csrf_token %}
+        Old Autor: <input type="text" name="oldauthor"><br>
+        New Author: <input type="text" name="newauthor"><br>
+        <input type="submit" value="Update">
+        <p>{{msg}}</p>
+
+    </form>
+
+    <form action="search" method="Post">
+        {% csrf_token %}
+        Title Search:<input type="text" name="title">
+        <br>
+        Author Search:<input type="text" name="author">
+        <br>
+        
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>ISBN</th>
+                <th>Genre</th>
+
+            </tr>
+
+            {% for i in lib %}
+
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.author}}</td>
+                <td>{{i.title}}</td>
+                <td>{{i.isbn}}</td>
+                <td>{{i.genre}}</td>
+            </tr>
+            {% endfor %}
+        </table><br>
+        <input type="submit" value="search">
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-image: url();
+            background-repeat: no-repeat;
+            background-position: ;
+        }
+        body{margin: 0px;}
+        main{margin: left 20px;
+            margin-right: 20px;}
+        h1{
+            text-align: center;
+        }
+        .navbar ul{list-style-type: none;
+        background-color: black;
+        padding: 0px;
+        margin: 0px;
+    overflow: hidden;}
+        .navbar a{
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            display: block;
+            text-align: center;
+        }
+        .navbar a:hover{ 
+            background-color: rgb(67, 65, 65);}
+        .navbar li{float:left}
+    </style>
+</head>
+<body>
+    <h1>HAIR SALON</h1>
+    <nav class="navbar">
+
+        <ul>
+            <li><a href="{% url 'viewservice' %}">Services</a></li>
+            <li><a href="{% url 'viewhairstylist' %}">Hairstylist</a></li>
+            <li><a href="{% url 'createappointment' %}">Appointment</a></li>
+
+        </ul>
+    </nav>
+
+</body>
+</html>

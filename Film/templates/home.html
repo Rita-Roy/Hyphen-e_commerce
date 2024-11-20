@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1 style="color: white;font-size:3em;"><strong>TicketHere</strong></h1>
+    <nav class="navbar">
+        <ul>
+            <li><a href="">About us</a> </li>
+            <li><a href="{% url 'movie_list' %}">Movies</a></li>
+            <li><a href="{% url 'upcoming' %}">Upcoming Movies</a> </li>
+            <li><a href="">Account</a> </li>
+            <li><a href="">Help/Support</a> </li>
+        </ul>
+    </nav>
+
+    <main>
+        <h3 style="color:white;font-size: xx-large;font-style: oblique;font-family: 'Times New Roman', Times, serif;text-align: center;"><u>Your Movie Adventure Starts Here</u></h3>
+        <h4 style="color: white; font-size: 1.5em;">Welcome to TicketHere — Your Gateway to the Ultimate Movie Experience!</h4>
+        
+    </main>
+    <div class="slider">
+        <div class="slides">
+            <img class="slide" src="{% static 'images/lucky-slide.jpg' %}" alt="Image #2 ">
+            <img class="slide" src="{% static 'images/pani-slide.jpg' %}" alt="Image #4">
+            <img class="slide" src="{% static 'images/venom-slide.jpg' %}" alt="Image #5">
+            <img class="slide" src="{% static 'images/mura-slide.jpg' %}" alt="Image #6">
+            <img class="slide" src="{% static 'images/bougainvilleamain-slide.jpg' %}" alt="Image #77">
+            
+        </div>
+        <button class="prev" onclick="prevSlide()">&#10094</button>
+        <button class="next" onclick="nextSlide()">&#10095</button>
+        <p id="p1">At TicketHere, we believe that every movie is more than just a film — it's an experience. Whether you're planning a fun night out, a cozy weekend binge, or an exciting group outing, we make booking movie tickets easier and more enjoyable than ever. No more long lines, no more hassle — just smooth, stress-free movie planning. Whether you're a casual moviegoer or a film aficionado, our app provides a seamless and user-friendly experience to browse, book, and enjoy the latest movies. With real-time ticket availability, a wide selection of cinemas, and detailed movie information, booking your next movie outing has never been easier. Skip the lines and reserve your seat in just a few taps, ensuring you never miss out on the latest blockbusters, indie hits, or family-friendly classics. Stay up to date with showtimes, exclusive offers, and even reviews to make the best choice.</p>
+    </div>
+
+    </div>
+    <style>
+        #p1{
+            color: white;
+            font-size: 1em;
+            font-style: normal;
+            text-align: center;
+            display: flex;
+        }
+        body {
+            background-image:url('https://wallpapercat.com/w/full/9/5/a/945731-3840x2160-desktop-4k-matte-black-wallpaper-image.jpg'); /* Replace with the path to your image */
+            background-size: cover;      /* Ensures the image covers the entire screen */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            background-position: center; /* Centers the image on the screen */
+            
+}
+    </style>
+
+    <script>
+        const slides = document.querySelectorAll(".slides img");
+let slideIndex = 0;
+let intervalId = null;
+
+document.addEventListener("DOMContentLoaded", initializeSlider);
+
+function initializeSlider(){
+    if(slides.length > 0){
+        slides[slideIndex].classList.add("displaySlide");
+        intervalId = setInterval(nextSlide, 2000);
+    }
+}
+
+function showSlide(index){
+    if(index >= slides.length){
+        slideIndex = 0;
+    }
+    else if(index < 0){
+        slideIndex = slides.length - 1;
+    }
+
+    slides.forEach(slide => {
+        slide.classList.remove("displaySlide");
+    });
+    slides[slideIndex].classList.add("displaySlide");
+}
+
+function prevSlide(){
+    clearInterval(intervalId);
+    slideIndex--;
+    showSlide(slideIndex);
+    intervalId=setInterval(nextSlide,2000);
+}
+
+function nextSlide(){
+    slideIndex++;
+    showSlide(slideIndex);
+}
+    </script>
+
+    <style>
+        body{
+            margin:0px
+        }
+        main{
+            margin-left:20px;
+            margin-right: 20px;
+        }
+        h1{
+            text-align: center;
+        }
+        .navbar ul{
+            list-style-type: none;
+            background-color: hsl(0,0%,25%);
+            padding:0px;
+            margin:0px;
+            overflow: hidden;
+        }
+        .navbar a{
+            color: white;
+            text-decoration: none; 
+            padding: 15px;
+            display:block;
+            text-align: center;
+        }
+        .navbar a:hover{
+            background-color: hsl(0,0%,10%);
+
+        }
+        .navbar li{
+            float: left;
+        }
+        .slider{
+            width:50vw;
+            height:50vw;
+            position: relative;
+            width: 100%;
+            margin:auto;
+            overflow: hidden;
+        }
+
+        .slider img{
+            width: 40%;
+            display: none;
+            height: 25vw;
+            box-shadow: 0px epx 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            filter: contrast(1.1) brightness(1.05);
+            transform: perspective(1000px) rotateY(5deg)
+            
+        }
+        .slider img:hover{
+            transform: scale(1.05);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        img.displaySlide{
+            display: block;
+            animation-name: fade;
+            animation-duration: 1s;
+        }
+
+        .slider button{
+
+            display: none;
+        }
+
+        .prev{
+            left: 10px;
+        }
+        .next{
+            right: 10px;
+        }
+
+        @keyframes fade{
+            from {opacity: .5}
+            to {opacity: 1}
+        }
+    </style>
+    
+</body>
+</html>

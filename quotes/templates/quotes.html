@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thought for the Day</title>
+</head>
+<body>
+    <form action="quoting">
+        {% csrf_token %}
+    <button type="submit">Generate Quote</button>
+</form>
+Today's quote is : 
+<br>
+{{result}}
+</body>
+</html>
